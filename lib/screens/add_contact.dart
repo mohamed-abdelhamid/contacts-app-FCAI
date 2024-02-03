@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../model/contact.dart';
 
 class AddContact extends StatefulWidget {
-  int x = 0 ;
+  const AddContact({Key? key}) : super(key: key);
+
   @override
   State<AddContact> createState() => _AddContactState();
 }
@@ -18,18 +19,15 @@ class _AddContactState extends State<AddContact> {
 
   @override
   void dispose() {
-    print('hello from dispose');
     nameCtrlr.dispose();
     mailCtrlr.dispose();
     phoneCtrlr.dispose();
-    print(widget.x)
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    print('hello from init');
     nameCtrlr = TextEditingController();
     phoneCtrlr = TextEditingController();
     mailCtrlr = TextEditingController();
@@ -40,23 +38,23 @@ class _AddContactState extends State<AddContact> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        title: Text('Add Contact'),
+        title: const Text('Add Contact'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 fillColor: Colors.lightBlue, hintText: 'Name', filled: true),
             controller: nameCtrlr,
           ),
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 fillColor: Colors.lightBlue, hintText: 'mail', filled: true),
             controller: mailCtrlr,
           ),
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 fillColor: Colors.lightBlue, hintText: 'phone', filled: true),
             controller: phoneCtrlr,
           ),
@@ -76,7 +74,7 @@ class _AddContactState extends State<AddContact> {
                 color: Colors.lightBlue,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Center(child: Text('Add Contact'),),
+              child: const Center(child: Text('Add Contact'),),
             ),
           )
         ],
