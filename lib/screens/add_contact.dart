@@ -1,4 +1,6 @@
 import 'package:contact/model/my_contacts.dart';
+import 'package:contact/providers/contact_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import '../model/contact.dart';
@@ -60,11 +62,12 @@ class _AddContactState extends State<AddContact> {
           ),
           MaterialButton(
             onPressed: () {
-              MyContacts.contacts.add(Contact(
-                nameCtrlr.value.text,
-                mailCtrlr.value.text,
-                phoneCtrlr.value.text
-              ));
+              Contact newContact = Contact(
+                  nameCtrlr.value.text,
+                  mailCtrlr.value.text,
+                  phoneCtrlr.value.text
+              );
+              Provider.of<ContactProvider>(context,listen: false).createNewContact(newContact: newContact);
               Navigator.pop(context);
             },
             child: Container(

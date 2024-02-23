@@ -1,17 +1,13 @@
 import 'package:contact/model/my_contacts.dart';
+import 'package:contact/providers/contact_provider.dart';
 import 'package:contact/screens/add_contact.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../widgets/contact_card.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +18,15 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddContact())).then((value) => setState((){}));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddContact()));
         },
       ),
       body: ListView.builder(
-        itemCount: MyContacts.contacts.length,
+        itemCount: Provider.of<ContactProvider>(context).myContacts.contacts.length,
         itemBuilder: (context, index) => ContactCard(
-            MyContacts.contacts[index].name,
-            MyContacts.contacts[index].mail,
-            MyContacts.contacts[index].phone),
+            Provider.of<ContactProvider>(context).myContacts.contacts[index].name,
+            Provider.of<ContactProvider>(context).myContacts.contacts[index].mail,
+            Provider.of<ContactProvider>(context).myContacts.contacts[index].phone),
       ),
     );
   }
