@@ -1,6 +1,7 @@
-import 'package:contact/providers/contact_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'cubits/contacts_cubit.dart';
 import 'screens/home.dart';
 
 void main() {
@@ -13,9 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(create: (ctx)=> ContactProvider() ),
+        BlocProvider<ContactsCubit>(
+          create: (BuildContext context) => ContactsCubit(),
+        ),
       ],
       child: const MaterialApp(
         home: Home(),

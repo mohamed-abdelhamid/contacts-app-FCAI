@@ -1,8 +1,7 @@
 import 'package:contact/model/my_contacts.dart';
-import 'package:contact/providers/contact_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubits/contacts_cubit.dart';
 import '../model/contact.dart';
 
 class AddContact extends StatefulWidget {
@@ -67,7 +66,7 @@ class _AddContactState extends State<AddContact> {
                   mailCtrlr.value.text,
                   phoneCtrlr.value.text
               );
-              Provider.of<ContactProvider>(context,listen: false).createNewContact(newContact: newContact);
+              BlocProvider.of<ContactsCubit>(context,listen: false).addContact(contact: newContact);
               Navigator.pop(context);
             },
             child: Container(
